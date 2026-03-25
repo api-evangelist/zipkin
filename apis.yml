@@ -1,0 +1,38 @@
+aid: zipkin
+name: Zipkin
+description: >-
+  Zipkin is an open source distributed tracing system for gathering timing data to troubleshoot latency problems in microservice architectures.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Observability
+  - Distributed Tracing
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml
+created: '2026-03-25'
+modified: '2026-03-25'
+specificationVersion: '0.19'
+apis:
+  - aid: zipkin:zipkin
+    name: Zipkin
+    description: >-
+      Zipkin is an open source distributed tracing system for gathering timing data to troubleshoot latency problems in microservice architectures.
+    humanURL: https://zipkin.io
+    tags:
+      - Observability
+      - Distributed Tracing
+    properties:
+      - type: Documentation
+        url: https://zipkin.io/pages/quickstart.html
+      - type: GitHub Repository
+        url: https://github.com/openzipkin/zipkin
+common:
+  - type: Website
+    url: https://zipkin.io
+  - type: Documentation
+    url: https://zipkin.io/pages/quickstart.html
+  - type: GitHub Organization
+    url: https://github.com/openzipkin/zipkin
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

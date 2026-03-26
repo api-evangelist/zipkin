@@ -1,0 +1,116 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api-evangelist.com/schemas/zipkin/span.json
+title: Zipkin Span
+description: >-
+  A span represents a single operation in a trace. It includes timing data,
+  metadata, and optional annotations that describe events during the operation.
+type: object
+required:
+  - traceId
+  - id
+properties:
+  traceId:
+    type: string
+    description: Unique 128-bit or 64-bit trace identifier encoded as 16 or 32 hex characters
+    pattern: '^[0-9a-f]{16,32}$'
+  parentId:
+    type: string
+    description: The parent span ID, absent if this is the root span
+    pattern: '^[0-9a-f]{16}$'
+  id:
+    type: string
+    description: Unique 64-bit span identifier encoded as 16 hex characters
+    pattern: '^[0-9a-f]{16}$'
+  kind:
+    type: string
+    description: >-
+      When present, indicates the role of the span in the trace. CLIENT and
+      SERVER represent RPC boundaries; PRODUCER and CONSUMER represent
+      messaging boundaries.
+    enum:
+      - CLIENT
+      - SERVER
+      - PRODUCER
+      - CONSUMER
+  name:
+    type: string
+    description: >-
+      The logical operation this span represents, such as an RPC method name
+      or a sub-task description
+  timestamp:
+    type: integer
+    description: Epoch microseconds of the start of this span on the host that recorded it
+  duration:
+    type: integer
+    description: >-
+      Duration in microseconds of the critical path, if known. Durations of
+      less than one microsecond must be rounded up to 1.
+    minimum: 1
+  localEndpoint:
+    $ref: '#/$defs/Endpoint'
+    description: The host that recorded this span, primarily for query lookup
+  remoteEndpoint:
+    $ref: '#/$defs/Endpoint'
+    description: >-
+      The remote address of the peer in an RPC call. Present on CLIENT spans
+      for the server address, and SERVER spans for the client address.
+  annotations:
+    type: array
+    description: Associates events that explain latency with a timestamp
+    items:
+      $ref: '#/$defs/Annotation'
+  tags:
+    type: object
+    description: >-
+      Tags give your span context for search, viewing, and analysis. Keys
+      are searchable and should represent dimensions of interest.
+    additionalProperties:
+      type: string
+  debug:
+    type: boolean
+    description: >-
+      True if this span was force-sampled via the debug flag. Debug spans
+      are always reported and never subject to sampling.
+  shared:
+    type: boolean
+    description: >-
+      True if we are contributing to a span started by another tracer, such
+      as when a server receives an RPC from a client.
+$defs:
+  Endpoint:
+    type: object
+    description: >-
+      The network context of a node in the service graph. Represents the
+      service and network address of a span's local or remote side.
+    properties:
+      serviceName:
+        type: string
+        description: Lower-case label of this node in the service graph
+      ipv4:
+        type: string
+        description: IPv4 host address
+        format: ipv4
+      ipv6:
+        type: string
+        description: IPv6 host address
+        format: ipv6
+      port:
+        type: integer
+        description: Port number of the IP address
+        minimum: 0
+        maximum: 65535
+  Annotation:
+    type: object
+    description: An event that explains latency with a timestamp
+    required:
+      - timestamp
+      - value
+    properties:
+      timestamp:
+        type: integer
+        description: Epoch microseconds of this event
+      value:
+        type: string
+        description: >-
+          Usually a short tag indicating an event, such as "cs" for client
+          send or a custom event description

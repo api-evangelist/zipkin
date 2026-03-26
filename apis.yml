@@ -10,22 +10,31 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-03-25'
+modified: '2026-03-26'
 specificationVersion: '0.19'
 apis:
-  - aid: zipkin:zipkin
-    name: Zipkin
+  - aid: zipkin:zipkin-api-v2
+    name: Zipkin API v2
     description: >-
-      Zipkin is an open source distributed tracing system for gathering timing data to troubleshoot latency problems in microservice architectures.
-    humanURL: https://zipkin.io
+      Zipkin's v2 HTTP API for querying and collecting distributed traces.
+      Provides endpoints for submitting spans, querying traces, looking up
+      services and span names, and retrieving dependency links between services.
+    humanURL: https://zipkin.io/zipkin-api/
     tags:
       - Observability
       - Distributed Tracing
+      - Spans
+      - Traces
+      - Dependencies
     properties:
       - type: Documentation
-        url: https://zipkin.io/pages/quickstart.html
+        url: https://zipkin.io/zipkin-api/
       - type: GitHub Repository
         url: https://github.com/openzipkin/zipkin
+      - type: OpenAPI
+        url: openapi/zipkin-api-v2.yml
+      - type: JSONSchema
+        url: json-schema/span.yml
 common:
   - type: Website
     url: https://zipkin.io

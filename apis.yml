@@ -14,7 +14,7 @@ modified: '2026-03-26'
 specificationVersion: '0.19'
 apis:
   - aid: zipkin:zipkin-api-v2
-    name: Zipkin API v2
+    name: Zipkin API V2
     description: >-
       Zipkin's v2 HTTP API for querying and collecting distributed traces.
       Provides endpoints for submitting spans, querying traces, looking up

@@ -5,8 +5,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Observability
   - Distributed Tracing
+  - Observability
 url: >-
   https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml
 created: '2026-03-25'
@@ -21,11 +21,11 @@ apis:
       services and span names, and retrieving dependency links between services.
     humanURL: https://zipkin.io/zipkin-api/
     tags:
-      - Observability
+      - Dependencies
       - Distributed Tracing
+      - Observability
       - Spans
       - Traces
-      - Dependencies
     properties:
       - type: Documentation
         url: https://zipkin.io/zipkin-api/

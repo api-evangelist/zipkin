@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/schema/v0",
+  "name": "Endpoint",
+  "type": "object",
+  "description": "The network context of a node in the service graph.",
+  "properties": {
+    "serviceName": {"type": "string", "description": "Service name in lower-case"},
+    "ipv4": {"type": "string", "format": "ipv4"},
+    "ipv6": {"type": "string", "format": "ipv6"},
+    "port": {"type": "integer", "minimum": 0, "maximum": 65535}
+  }
+}

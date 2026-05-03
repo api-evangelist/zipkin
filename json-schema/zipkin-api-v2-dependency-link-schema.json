@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/json-schema/zipkin-api-v2-dependency-link-schema.json",
+  "title": "DependencyLink",
+  "description": "A dependency link between two services derived from spans.",
+  "type": "object",
+  "required": ["parent", "child", "callCount"],
+  "properties": {
+    "parent": {
+      "type": "string",
+      "description": "Parent service name"
+    },
+    "child": {
+      "type": "string",
+      "description": "Child service name"
+    },
+    "callCount": {
+      "type": "integer",
+      "description": "Total traced calls from parent to child"
+    },
+    "errorCount": {
+      "type": "integer",
+      "description": "Total traced calls that errored"
+    }
+  }
+}

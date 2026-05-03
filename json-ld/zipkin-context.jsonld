@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "zipkin": "https://zipkin.io/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Span": "zipkin:Span",
+    "Endpoint": "zipkin:Endpoint",
+    "Annotation": "zipkin:Annotation",
+    "DependencyLink": "zipkin:DependencyLink",
+    "traceId": {"@id": "zipkin:traceId", "@type": "xsd:string"},
+    "parentId": {"@id": "zipkin:parentId", "@type": "xsd:string"},
+    "id": {"@id": "zipkin:id", "@type": "xsd:string"},
+    "kind": {"@id": "zipkin:kind", "@type": "xsd:string"},
+    "name": {"@id": "zipkin:name", "@type": "xsd:string"},
+    "timestamp": {"@id": "zipkin:timestamp", "@type": "xsd:long"},
+    "duration": {"@id": "zipkin:duration", "@type": "xsd:long"},
+    "localEndpoint": {"@id": "zipkin:localEndpoint", "@type": "@id"},
+    "remoteEndpoint": {"@id": "zipkin:remoteEndpoint", "@type": "@id"},
+    "annotations": {"@id": "zipkin:annotations", "@container": "@list"},
+    "tags": {"@id": "zipkin:tags"},
+    "serviceName": {"@id": "zipkin:serviceName", "@type": "xsd:string"},
+    "ipv4": {"@id": "zipkin:ipv4", "@type": "xsd:string"},
+    "ipv6": {"@id": "zipkin:ipv6", "@type": "xsd:string"},
+    "port": {"@id": "zipkin:port", "@type": "xsd:integer"},
+    "value": {"@id": "zipkin:value", "@type": "xsd:string"},
+    "parent": {"@id": "zipkin:parent", "@type": "xsd:string"},
+    "child": {"@id": "zipkin:child", "@type": "xsd:string"},
+    "callCount": {"@id": "zipkin:callCount", "@type": "xsd:integer"},
+    "errorCount": {"@id": "zipkin:errorCount", "@type": "xsd:integer"}
+  }
+}

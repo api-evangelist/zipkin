@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/json-schema/zipkin-api-v2-annotation-schema.json",
+  "title": "Annotation",
+  "description": "An event with a timestamp explaining latency in a span.",
+  "type": "object",
+  "required": ["timestamp", "value"],
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Epoch microseconds of this event"
+    },
+    "value": {
+      "type": "string",
+      "description": "Event value, usually a short description"
+    }
+  }
+}

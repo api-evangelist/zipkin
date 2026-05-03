@@ -1,0 +1,35 @@
+apiVersion: naftiko/v1
+kind: WorkflowCapability
+metadata:
+  name: distributed-tracing-investigation
+  provider: zipkin
+info:
+  title: Distributed Tracing Investigation
+  description: >-
+    A workflow capability for an SRE investigating latency or errors in a
+    distributed system. Combines Zipkin trace search, trace retrieval, and
+    dependency analysis to surface root causes across microservices.
+  persona: Site Reliability Engineer
+combines:
+  - api: zipkin-api-v2
+    capability: capabilities/shared/zipkin-api-v2.yaml
+mcp:
+  tools:
+    - name: list-services
+      description: List all services emitting spans into Zipkin.
+      operationId: getServices
+    - name: list-span-names
+      description: List span names for a given service.
+      operationId: getSpanNames
+    - name: search-traces
+      description: Search traces matching given query parameters.
+      operationId: getTraces
+    - name: get-trace
+      description: Retrieve a specific trace by its ID.
+      operationId: getTrace
+    - name: get-dependencies
+      description: Retrieve service-to-service dependency links.
+      operationId: getDependencies
+    - name: health-check
+      description: Verify Zipkin server health.
+      operationId: getHealth

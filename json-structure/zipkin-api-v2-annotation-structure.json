@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-structure.org/schema/v0",
+  "name": "Annotation",
+  "type": "object",
+  "description": "A latency-explaining event with a timestamp.",
+  "properties": {
+    "timestamp": {"type": "integer", "description": "Epoch microseconds of this event"},
+    "value": {"type": "string", "description": "Event value"}
+  },
+  "required": ["timestamp", "value"]
+}

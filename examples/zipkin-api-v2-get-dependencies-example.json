@@ -1,0 +1,35 @@
+{
+  "title": "Get Dependencies Example",
+  "description": "Example for retrieving service dependency links from traced calls",
+  "request": {
+    "method": "GET",
+    "path": "/api/v2/dependencies",
+    "queryParams": {
+      "endTs": "1609459260000",
+      "lookback": "86400000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "parent": "frontend",
+        "child": "backend-api",
+        "callCount": 1420,
+        "errorCount": 12
+      },
+      {
+        "parent": "backend-api",
+        "child": "database-service",
+        "callCount": 3850,
+        "errorCount": 3
+      },
+      {
+        "parent": "backend-api",
+        "child": "cache-service",
+        "callCount": 2100,
+        "errorCount": 0
+      }
+    ]
+  }
+}

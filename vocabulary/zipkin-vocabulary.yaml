@@ -1,0 +1,51 @@
+name: Zipkin Vocabulary
+description: >-
+  Unified taxonomy mapping operational and capability concepts in the Zipkin
+  distributed tracing platform across OpenAPI operations and Naftiko capabilities.
+provider: zipkin
+operational:
+  resources:
+    - name: Service
+      description: A logical service emitting spans into Zipkin.
+    - name: Span
+      description: A unit of work in a distributed trace.
+    - name: Trace
+      description: A collection of spans linked by a trace ID.
+    - name: Dependency
+      description: A directional link between two services derived from spans.
+    - name: Annotation
+      description: A timestamped event within a span.
+    - name: Endpoint
+      description: A network identity (service, IP, port) involved in a span.
+    - name: Tag
+      description: A key-value pair attached to a span for searching and filtering.
+  actions:
+    - name: getServices
+      description: List service names known to Zipkin.
+    - name: getSpanNames
+      description: List span names for a service.
+    - name: reportSpans
+      description: Submit spans for ingestion.
+    - name: getTraces
+      description: Search for traces matching criteria.
+    - name: getTrace
+      description: Retrieve a single trace by ID.
+    - name: getDependencies
+      description: Retrieve dependency links between services.
+    - name: getAutocompleteKeys
+      description: Retrieve autocomplete tag keys.
+    - name: getAutocompleteValues
+      description: Retrieve autocomplete values for a tag key.
+    - name: getHealth
+      description: Check Zipkin server health.
+capability:
+  workflows:
+    - name: distributed-tracing-investigation
+      description: SRE investigation of latency or errors via traces and dependencies.
+  personas:
+    - name: Site Reliability Engineer
+      description: Operates production systems and investigates incidents.
+    - name: Backend Engineer
+      description: Instruments services and consumes traces during development.
+    - name: Platform Engineer
+      description: Operates the tracing infrastructure (Zipkin server and storage).

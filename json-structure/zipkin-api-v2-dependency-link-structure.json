@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/schema/v0",
+  "name": "DependencyLink",
+  "type": "object",
+  "description": "Service-to-service dependency link.",
+  "properties": {
+    "parent": {"type": "string"},
+    "child": {"type": "string"},
+    "callCount": {"type": "integer"},
+    "errorCount": {"type": "integer"}
+  },
+  "required": ["parent", "child", "callCount"]
+}

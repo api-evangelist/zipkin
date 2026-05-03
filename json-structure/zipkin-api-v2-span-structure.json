@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/schema/v0",
+  "name": "Span",
+  "type": "object",
+  "description": "A Zipkin span representing an individual unit of work in a distributed trace.",
+  "properties": {
+    "traceId": {"type": "string", "description": "128-bit or 64-bit trace ID, hex encoded"},
+    "parentId": {"type": "string", "description": "Parent span ID, hex encoded"},
+    "id": {"type": "string", "description": "64-bit span ID, hex encoded"},
+    "kind": {"type": "string", "enum": ["CLIENT", "SERVER", "PRODUCER", "CONSUMER"]},
+    "name": {"type": "string", "description": "Logical operation name"},
+    "timestamp": {"type": "integer", "description": "Start epoch microseconds"},
+    "duration": {"type": "integer", "description": "Duration in microseconds"},
+    "localEndpoint": {"$ref": "zipkin-api-v2-endpoint-structure.json"},
+    "remoteEndpoint": {"$ref": "zipkin-api-v2-endpoint-structure.json"},
+    "annotations": {"type": "array", "items": {"$ref": "zipkin-api-v2-annotation-structure.json"}},
+    "tags": {"type": "map", "values": {"type": "string"}},
+    "debug": {"type": "boolean"},
+    "shared": {"type": "boolean"}
+  },
+  "required": ["traceId", "id"]
+}

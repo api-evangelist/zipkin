@@ -1,0 +1,40 @@
+{
+  "title": "Report Spans Example",
+  "description": "Example request for submitting distributed trace spans to Zipkin",
+  "request": {
+    "method": "POST",
+    "path": "/api/v2/spans",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "parentId": "00f067aa0ba902b7",
+        "id": "a2fb4a1d1a96d312",
+        "kind": "SERVER",
+        "name": "get-user",
+        "timestamp": 1609459200000000,
+        "duration": 72000,
+        "localEndpoint": {
+          "serviceName": "backend-api",
+          "ipv4": "192.168.1.10",
+          "port": 8080
+        },
+        "remoteEndpoint": {
+          "serviceName": "frontend",
+          "ipv4": "192.168.1.5"
+        },
+        "tags": {
+          "http.method": "GET",
+          "http.path": "/users/123",
+          "http.status_code": "200"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 202,
+    "body": null
+  }
+}

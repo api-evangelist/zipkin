@@ -1,0 +1,47 @@
+extends:
+  - spectral:oas
+rules:
+  zipkin-summary-prefix:
+    description: All operation summaries must start with "Zipkin"
+    message: "Operation summary should start with 'Zipkin' provider prefix"
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Zipkin "
+  zipkin-operation-id:
+    description: Every operation must have an operationId
+    message: "Operation must define an operationId"
+    severity: error
+    given: "$.paths.*[get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+  zipkin-operation-tags:
+    description: Every operation must have at least one tag
+    message: "Operation must have a tag"
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+  zipkin-operation-description:
+    description: Every operation must have a description
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch]"
+    then:
+      field: description
+      function: truthy
+  zipkin-trace-id-pattern:
+    description: traceId fields must use the hex pattern
+    severity: warn
+    given: "$.components.schemas.Span.properties.traceId.pattern"
+    then:
+      function: truthy
+  zipkin-server-url:
+    description: Servers must be defined
+    severity: error
+    given: "$.servers"
+    then:
+      function: truthy

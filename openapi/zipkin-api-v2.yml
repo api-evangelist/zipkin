@@ -15,12 +15,27 @@ info:
 servers:
   - url: http://localhost:9411
     description: Default Zipkin server
+tags:
+  - name: Services
+    description: Query registered service names
+  - name: Spans
+    description: Submit and query span names
+  - name: Traces
+    description: Search and retrieve distributed traces
+  - name: Dependencies
+    description: Query service dependency links
+  - name: Autocomplete
+    description: Autocomplete tag key and value lookups
+  - name: Health
+    description: Server health check
 paths:
   /api/v2/services:
     get:
       operationId: getServices
-      summary: Get service names
+      summary: Zipkin Get Service Names
       description: Returns a list of all service names associated with span endpoints.
+      tags:
+        - Services
       responses:
         '200':
           description: A list of service names
@@ -35,8 +50,10 @@ paths:
   /api/v2/spans:
     get:
       operationId: getSpanNames
-      summary: Get span names
+      summary: Zipkin Get Span Names
       description: Returns a list of span names for a given service.
+      tags:
+        - Spans
       parameters:
         - name: serviceName
           in: query
@@ -57,10 +74,12 @@ paths:
           description: Bad request
     post:
       operationId: reportSpans
-      summary: Report spans
+      summary: Zipkin Report Spans
       description: >-
         Uploads a list of spans encoded per content type. Accepted content types
         are application/json and application/x-protobuf.
+      tags:
+        - Spans
       requestBody:
         required: true
         content:
@@ -77,10 +96,12 @@ paths:
   /api/v2/traces:
     get:
       operationId: getTraces
-      summary: Search for traces
+      summary: Zipkin Search for Traces
       description: >-
         Searches for traces matching the given query parameters. Results are
         sorted by descending end timestamp.
+      tags:
+        - Traces
       parameters:
         - name: serviceName
           in: query
@@ -148,8 +169,10 @@ paths:
   /api/v2/trace/{traceId}:
     get:
       operationId: getTrace
-      summary: Get a trace by ID
+      summary: Zipkin Get a Trace by ID
       description: Returns a trace by its 16 or 32 character hex trace ID.
+      tags:
+        - Traces
       parameters:
         - name: traceId
           in: path
@@ -172,10 +195,12 @@ paths:
   /api/v2/dependencies:
     get:
       operationId: getDependencies
-      summary: Get dependency links
+      summary: Zipkin Get Dependency Links
       description: >-
         Returns dependency links derived from spans. Dependencies show which
         services call which other services, along with call counts and error counts.
+      tags:
+        - Dependencies
       parameters:
         - name: endTs
           in: query
@@ -203,8 +228,10 @@ paths:
   /api/v2/autocompleteKeys:
     get:
       operationId: getAutocompleteKeys
-      summary: Get autocomplete keys
+      summary: Zipkin Get Autocomplete Keys
       description: Returns a list of tag keys configured for autocomplete.
+      tags:
+        - Autocomplete
       responses:
         '200':
           description: A list of autocomplete tag keys
@@ -217,8 +244,10 @@ paths:
   /api/v2/autocompleteValues:
     get:
       operationId: getAutocompleteValues
-      summary: Get autocomplete values
+      summary: Zipkin Get Autocomplete Values
       description: Returns a list of values for a given autocomplete tag key.
+      tags:
+        - Autocomplete
       parameters:
         - name: key
           in: query
@@ -238,8 +267,10 @@ paths:
   /health:
     get:
       operationId: getHealth
-      summary: Health check
+      summary: Zipkin Health Check
       description: Returns OK if the server is healthy.
+      tags:
+        - Health
       responses:
         '200':
           description: Server is healthy

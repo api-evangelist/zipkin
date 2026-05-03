@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/json-schema/zipkin-api-v2-span-schema.json",
+  "title": "Span",
+  "description": "A Zipkin span represents an individual unit of work in a distributed trace.",
+  "type": "object",
+  "required": ["traceId", "id"],
+  "properties": {
+    "traceId": {
+      "type": "string",
+      "description": "Unique 128-bit or 64-bit trace identifier, hex encoded",
+      "pattern": "^[0-9a-f]{16,32}$"
+    },
+    "parentId": {
+      "type": "string",
+      "description": "The parent span ID, hex encoded, absent if root span",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique 64-bit span identifier, hex encoded",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "kind": {
+      "type": "string",
+      "description": "The type of span",
+      "enum": ["CLIENT", "SERVER", "PRODUCER", "CONSUMER"]
+    },
+    "name": {
+      "type": "string",
+      "description": "The logical operation this span represents"
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Epoch microseconds of the start of this span"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration in microseconds of the critical path"
+    },
+    "localEndpoint": {
+      "$ref": "zipkin-api-v2-endpoint-schema.json"
+    },
+    "remoteEndpoint": {
+      "$ref": "zipkin-api-v2-endpoint-schema.json"
+    },
+    "annotations": {
+      "type": "array",
+      "description": "Events that explain latency with a timestamp",
+      "items": {
+        "$ref": "zipkin-api-v2-annotation-schema.json"
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Key-value pairs providing additional context",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "True if this span was sampled with debug flag"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "True if this span ID is shared between client and server"
+    }
+  }
+}

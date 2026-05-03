@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/json-schema/zipkin-api-v2-endpoint-schema.json",
+  "title": "Endpoint",
+  "description": "The network context of a node in the service graph.",
+  "type": "object",
+  "properties": {
+    "serviceName": {
+      "type": "string",
+      "description": "Lower-case label of this node in the service graph"
+    },
+    "ipv4": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "IPv4 address"
+    },
+    "ipv6": {
+      "type": "string",
+      "format": "ipv6",
+      "description": "IPv6 address"
+    },
+    "port": {
+      "type": "integer",
+      "description": "Port number",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Search Traces Example",
+  "description": "Example for searching distributed traces by service name and time range",
+  "request": {
+    "method": "GET",
+    "path": "/api/v2/traces",
+    "queryParams": {
+      "serviceName": "backend-api",
+      "limit": "10",
+      "endTs": "1609459260000",
+      "lookback": "3600000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      [
+        {
+          "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+          "id": "4bf92f3577b34da6",
+          "kind": "CLIENT",
+          "name": "http-get",
+          "timestamp": 1609459200000000,
+          "duration": 110000,
+          "localEndpoint": {
+            "serviceName": "frontend",
+            "ipv4": "192.168.1.5"
+          },
+          "tags": {
+            "http.method": "GET",
+            "http.status_code": "200"
+          }
+        },
+        {
+          "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+          "parentId": "4bf92f3577b34da6",
+          "id": "a2fb4a1d1a96d312",
+          "kind": "SERVER",
+          "name": "get-user",
+          "timestamp": 1609459200010000,
+          "duration": 72000,
+          "localEndpoint": {
+            "serviceName": "backend-api",
+            "ipv4": "192.168.1.10",
+            "port": 8080
+          }
+        }
+      ]
+    ]
+  }
+}

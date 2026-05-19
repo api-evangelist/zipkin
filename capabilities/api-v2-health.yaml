@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Health
+  description: 'Zipkin API v2 — Health. 1 operations. Lead operation: Zipkin Health Check. Self-contained Naftiko capability
+    covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Health
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-health
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Health business capability. Self-contained, no shared references.
+    resources:
+    - name: health
+      path: /health
+      operations:
+      - name: gethealth
+        method: GET
+        description: Zipkin Health Check
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: api-v2-health-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Health. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/health
+      name: health
+      description: REST surface for health.
+      operations:
+      - method: GET
+        name: gethealth
+        description: Zipkin Health Check
+        call: api-v2-health.gethealth
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-health-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Health. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zipkin-health-check
+      description: Zipkin Health Check
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-health.gethealth
+      outputParameters:
+      - type: object
+        mapping: $.

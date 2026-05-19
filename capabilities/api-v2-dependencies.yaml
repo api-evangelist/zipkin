@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Dependencies
+  description: 'Zipkin API v2 — Dependencies. 1 operations. Lead operation: Zipkin Get Dependency Links. Self-contained Naftiko
+    capability covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Dependencies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-dependencies
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Dependencies business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-dependencies
+      path: /api/v2/dependencies
+      operations:
+      - name: getdependencies
+        method: GET
+        description: Zipkin Get Dependency Links
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: endTs
+          in: query
+          type: integer
+          description: Upper bound timestamp for dependency links, in epoch milliseconds.
+          required: true
+        - name: lookback
+          in: query
+          type: integer
+          description: How far back from endTs to look, in milliseconds.
+  exposes:
+  - type: rest
+    namespace: api-v2-dependencies-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Dependencies. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/dependencies
+      name: api-v2-dependencies
+      description: REST surface for api-v2-dependencies.
+      operations:
+      - method: GET
+        name: getdependencies
+        description: Zipkin Get Dependency Links
+        call: api-v2-dependencies.getdependencies
+        with:
+          endTs: rest.endTs
+          lookback: rest.lookback
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-dependencies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Dependencies. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: zipkin-get-dependency-links
+      description: Zipkin Get Dependency Links
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-dependencies.getdependencies
+      with:
+        endTs: tools.endTs
+        lookback: tools.lookback
+      outputParameters:
+      - type: object
+        mapping: $.

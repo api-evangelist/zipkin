@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Services
+  description: 'Zipkin API v2 — Services. 1 operations. Lead operation: Zipkin Get Service Names. Self-contained Naftiko capability
+    covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Services
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-services
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Services business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-services
+      path: /api/v2/services
+      operations:
+      - name: getservices
+        method: GET
+        description: Zipkin Get Service Names
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: api-v2-services-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Services. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/services
+      name: api-v2-services
+      description: REST surface for api-v2-services.
+      operations:
+      - method: GET
+        name: getservices
+        description: Zipkin Get Service Names
+        call: api-v2-services.getservices
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-services-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Services. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zipkin-get-service-names
+      description: Zipkin Get Service Names
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-services.getservices
+      outputParameters:
+      - type: object
+        mapping: $.

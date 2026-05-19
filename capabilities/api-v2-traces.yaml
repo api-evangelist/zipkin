@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Traces
+  description: 'Zipkin API v2 — Traces. 2 operations. Lead operation: Zipkin Get a Trace by ID. Self-contained Naftiko capability
+    covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Traces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-traces
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Traces business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-trace-traceId
+      path: /api/v2/trace/{traceId}
+      operations:
+      - name: gettrace
+        method: GET
+        description: Zipkin Get a Trace by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: traceId
+          in: path
+          type: string
+          description: Trace ID, 16 or 32 character hex string
+          required: true
+    - name: api-v2-traces
+      path: /api/v2/traces
+      operations:
+      - name: gettraces
+        method: GET
+        description: Zipkin Search for Traces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: query
+          type: string
+          description: Service name to query for
+        - name: spanName
+          in: query
+          type: string
+          description: Span name to query for
+        - name: annotationQuery
+          in: query
+          type: string
+          description: Annotation query string, e.g. "http.method=GET" or "error"
+        - name: minDuration
+          in: query
+          type: integer
+          description: Minimum duration in microseconds
+        - name: maxDuration
+          in: query
+          type: integer
+          description: Maximum duration in microseconds
+        - name: endTs
+          in: query
+          type: integer
+          description: Upper bound on the timestamp of the first span in a trace, in epoch milliseconds. Defaults to current
+            time.
+        - name: lookback
+          in: query
+          type: integer
+          description: How far back to look from endTs, in milliseconds. Defaults to endTs, limited to a system-configured
+            max.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of traces to return. Defaults to 10.
+  exposes:
+  - type: rest
+    namespace: api-v2-traces-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Traces. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/trace/{traceid}
+      name: api-v2-trace-traceid
+      description: REST surface for api-v2-trace-traceId.
+      operations:
+      - method: GET
+        name: gettrace
+        description: Zipkin Get a Trace by ID
+        call: api-v2-traces.gettrace
+        with:
+          traceId: rest.traceId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/traces
+      name: api-v2-traces
+      description: REST surface for api-v2-traces.
+      operations:
+      - method: GET
+        name: gettraces
+        description: Zipkin Search for Traces
+        call: api-v2-traces.gettraces
+        with:
+          serviceName: rest.serviceName
+          spanName: rest.spanName
+          annotationQuery: rest.annotationQuery
+          minDuration: rest.minDuration
+          maxDuration: rest.maxDuration
+          endTs: rest.endTs
+          lookback: rest.lookback
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-traces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Traces. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zipkin-get-trace-id
+      description: Zipkin Get a Trace by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-traces.gettrace
+      with:
+        traceId: tools.traceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zipkin-search-traces
+      description: Zipkin Search for Traces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-traces.gettraces
+      with:
+        serviceName: tools.serviceName
+        spanName: tools.spanName
+        annotationQuery: tools.annotationQuery
+        minDuration: tools.minDuration
+        maxDuration: tools.maxDuration
+        endTs: tools.endTs
+        lookback: tools.lookback
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

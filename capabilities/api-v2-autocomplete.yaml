@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Autocomplete
+  description: 'Zipkin API v2 — Autocomplete. 2 operations. Lead operation: Zipkin Get Autocomplete Keys. Self-contained Naftiko
+    capability covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Autocomplete
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-autocomplete
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Autocomplete business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-autocompleteKeys
+      path: /api/v2/autocompleteKeys
+      operations:
+      - name: getautocompletekeys
+        method: GET
+        description: Zipkin Get Autocomplete Keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-autocompleteValues
+      path: /api/v2/autocompleteValues
+      operations:
+      - name: getautocompletevalues
+        method: GET
+        description: Zipkin Get Autocomplete Values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: query
+          type: string
+          description: The tag key to lookup values for
+          required: true
+  exposes:
+  - type: rest
+    namespace: api-v2-autocomplete-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Autocomplete. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/autocompletekeys
+      name: api-v2-autocompletekeys
+      description: REST surface for api-v2-autocompleteKeys.
+      operations:
+      - method: GET
+        name: getautocompletekeys
+        description: Zipkin Get Autocomplete Keys
+        call: api-v2-autocomplete.getautocompletekeys
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/autocompletevalues
+      name: api-v2-autocompletevalues
+      description: REST surface for api-v2-autocompleteValues.
+      operations:
+      - method: GET
+        name: getautocompletevalues
+        description: Zipkin Get Autocomplete Values
+        call: api-v2-autocomplete.getautocompletevalues
+        with:
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-autocomplete-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Autocomplete. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: zipkin-get-autocomplete-keys
+      description: Zipkin Get Autocomplete Keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-autocomplete.getautocompletekeys
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zipkin-get-autocomplete-values
+      description: Zipkin Get Autocomplete Values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-autocomplete.getautocompletevalues
+      with:
+        key: tools.key
+      outputParameters:
+      - type: object
+        mapping: $.

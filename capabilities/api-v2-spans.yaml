@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zipkin API v2 — Spans
+  description: 'Zipkin API v2 — Spans. 2 operations. Lead operation: Zipkin Get Span Names. Self-contained Naftiko capability
+    covering one Zipkin business surface.'
+  tags:
+  - Zipkin
+  - Spans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZIPKIN_API_KEY: ZIPKIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-spans
+    baseUri: http://localhost:9411
+    description: Zipkin API v2 — Spans business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-spans
+      path: /api/v2/spans
+      operations:
+      - name: getspannames
+        method: GET
+        description: Zipkin Get Span Names
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: query
+          type: string
+          description: The service name to lookup span names for
+          required: true
+      - name: reportspans
+        method: POST
+        description: Zipkin Report Spans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: api-v2-spans-rest
+    port: 8080
+    description: REST adapter for Zipkin API v2 — Spans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/spans
+      name: api-v2-spans
+      description: REST surface for api-v2-spans.
+      operations:
+      - method: GET
+        name: getspannames
+        description: Zipkin Get Span Names
+        call: api-v2-spans.getspannames
+        with:
+          serviceName: rest.serviceName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: reportspans
+        description: Zipkin Report Spans
+        call: api-v2-spans.reportspans
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-spans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zipkin API v2 — Spans. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zipkin-get-span-names
+      description: Zipkin Get Span Names
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-spans.getspannames
+      with:
+        serviceName: tools.serviceName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zipkin-report-spans
+      description: Zipkin Report Spans
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-v2-spans.reportspans
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

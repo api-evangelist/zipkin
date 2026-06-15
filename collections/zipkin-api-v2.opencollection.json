@@ -1,0 +1,249 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Service Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/services"
+          },
+          "docs": "Returns a list of all service names associated with span endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Spans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Span Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/spans",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "The service name to lookup span names for"
+              }
+            ]
+          },
+          "docs": "Returns a list of span names for a given service."
+        },
+        {
+          "info": {
+            "name": "Zipkin Report Spans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:9411/api/v2/spans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a list of spans encoded per content type. Accepted content types are application/json and application/x-protobuf."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Search for Traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/traces",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "Service name to query for"
+              },
+              {
+                "name": "spanName",
+                "value": "",
+                "type": "query",
+                "description": "Span name to query for"
+              },
+              {
+                "name": "annotationQuery",
+                "value": "",
+                "type": "query",
+                "description": "Annotation query string, e.g. \"http.method=GET\" or \"error\""
+              },
+              {
+                "name": "minDuration",
+                "value": "",
+                "type": "query",
+                "description": "Minimum duration in microseconds"
+              },
+              {
+                "name": "maxDuration",
+                "value": "",
+                "type": "query",
+                "description": "Maximum duration in microseconds"
+              },
+              {
+                "name": "endTs",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound on the timestamp of the first span in a trace, in epoch milliseconds. Defaults to current time."
+              },
+              {
+                "name": "lookback",
+                "value": "",
+                "type": "query",
+                "description": "How far back to look from endTs, in milliseconds. Defaults to endTs, limited to a system-configured max."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of traces to return. Defaults to 10."
+              }
+            ]
+          },
+          "docs": "Searches for traces matching the given query parameters. Results are sorted by descending end timestamp."
+        },
+        {
+          "info": {
+            "name": "Zipkin Get a Trace by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/trace/:traceId",
+            "params": [
+              {
+                "name": "traceId",
+                "value": "",
+                "type": "path",
+                "description": "Trace ID, 16 or 32 character hex string"
+              }
+            ]
+          },
+          "docs": "Returns a trace by its 16 or 32 character hex trace ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dependencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Dependency Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/dependencies",
+            "params": [
+              {
+                "name": "endTs",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound timestamp for dependency links, in epoch milliseconds."
+              },
+              {
+                "name": "lookback",
+                "value": "",
+                "type": "query",
+                "description": "How far back from endTs to look, in milliseconds."
+              }
+            ]
+          },
+          "docs": "Returns dependency links derived from spans. Dependencies show which services call which other services, along with call counts and error counts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Autocomplete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Autocomplete Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/autocompleteKeys"
+          },
+          "docs": "Returns a list of tag keys configured for autocomplete."
+        },
+        {
+          "info": {
+            "name": "Zipkin Get Autocomplete Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/autocompleteValues",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The tag key to lookup values for"
+              }
+            ]
+          },
+          "docs": "Returns a list of values for a given autocomplete tag key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/health"
+          },
+          "docs": "Returns OK if the server is healthy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

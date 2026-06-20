@@ -6,7 +6,7 @@ description: >-
   CNCF-related project maintained by the OpenZipkin community. Zipkin provides a collector, storage, and query service
   with a UI for visualizing trace data across distributed services.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Distributed Tracing
   - Observability

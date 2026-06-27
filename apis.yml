@@ -52,13 +52,13 @@ apis:
         url: json-structure/zipkin-api-v2-annotation-structure.json
       - type: JSONStructure
         url: json-structure/zipkin-api-v2-dependency-link-structure.json
-      - type: Example
+      - type: Examples
         url: examples/zipkin-api-v2-get-services-example.json
-      - type: Example
+      - type: Examples
         url: examples/zipkin-api-v2-get-dependencies-example.json
-      - type: Example
+      - type: Examples
         url: examples/zipkin-api-v2-report-spans-example.json
-      - type: Example
+      - type: Examples
         url: examples/zipkin-api-v2-search-traces-example.json
 common:
   - type: Website
@@ -67,16 +67,16 @@ common:
     url: https://zipkin.io/pages/quickstart.html
   - type: GitHubOrganization
     url: https://github.com/openzipkin
-  - type: SDK
+  - type: SDKs
     url: https://github.com/openzipkin/brave
     name: Brave (Java)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/openzipkin/zipkin-go
     name: zipkin-go (Go)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/openzipkin/zipkin-js
     name: zipkin-js (JavaScript/Node.js)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/openzipkin/zipkin-ruby
     name: zipkin-ruby (Ruby)
   - type: JSONLD

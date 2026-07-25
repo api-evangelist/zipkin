@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Zipkin API v2 Autocomplete Services API
+  description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+  version: 2.0.0
+  contact:
+    name: OpenZipkin
+    url: https://zipkin.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:9411
+  description: Default Zipkin server
+tags:
+- name: Services
+  description: Query registered service names
+paths:
+  /api/v2/services:
+    get:
+      operationId: getServices
+      summary: Zipkin Get Service Names
+      description: Returns a list of all service names associated with span endpoints.
+      tags:
+      - Services
+      responses:
+        '200':
+          description: A list of service names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request

@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: Zipkin API v2 Autocomplete Dependencies API
+  description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+  version: 2.0.0
+  contact:
+    name: OpenZipkin
+    url: https://zipkin.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:9411
+  description: Default Zipkin server
+tags:
+- name: Dependencies
+  description: Query service dependency links
+paths:
+  /api/v2/dependencies:
+    get:
+      operationId: getDependencies
+      summary: Zipkin Get Dependency Links
+      description: Returns dependency links derived from spans. Dependencies show which services call which other services, along with call counts and error counts.
+      tags:
+      - Dependencies
+      parameters:
+      - name: endTs
+        in: query
+        required: true
+        description: Upper bound timestamp for dependency links, in epoch milliseconds.
+        schema:
+          type: integer
+          format: int64
+      - name: lookback
+        in: query
+        description: How far back from endTs to look, in milliseconds.
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: A list of dependency links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DependencyLink'
+components:
+  schemas:
+    DependencyLink:
+      type: object
+      required:
+      - parent
+      - child
+      - callCount
+      properties:
+        parent:
+          type: string
+          description: Parent service name
+        child:
+          type: string
+          description: Child service name
+        callCount:
+          type: integer
+          description: Total traced calls from parent to child
+        errorCount:
+          type: integer
+          description: Total traced calls that errored

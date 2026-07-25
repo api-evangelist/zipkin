@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Zipkin API v2 Autocomplete API
+  description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+  version: 2.0.0
+  contact:
+    name: OpenZipkin
+    url: https://zipkin.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:9411
+  description: Default Zipkin server
+tags:
+- name: Autocomplete
+  description: Autocomplete tag key and value lookups
+paths:
+  /api/v2/autocompleteKeys:
+    get:
+      operationId: getAutocompleteKeys
+      summary: Zipkin Get Autocomplete Keys
+      description: Returns a list of tag keys configured for autocomplete.
+      tags:
+      - Autocomplete
+      responses:
+        '200':
+          description: A list of autocomplete tag keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/v2/autocompleteValues:
+    get:
+      operationId: getAutocompleteValues
+      summary: Zipkin Get Autocomplete Values
+      description: Returns a list of values for a given autocomplete tag key.
+      tags:
+      - Autocomplete
+      parameters:
+      - name: key
+        in: query
+        required: true
+        description: The tag key to lookup values for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of autocomplete values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Zipkin API v2 Autocomplete Health API
+  description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+  version: 2.0.0
+  contact:
+    name: OpenZipkin
+    url: https://zipkin.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:9411
+  description: Default Zipkin server
+tags:
+- name: Health
+  description: Server health check
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Zipkin Health Check
+      description: Returns OK if the server is healthy.
+      tags:
+      - Health
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK

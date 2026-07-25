@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: Zipkin API v2 Autocomplete Traces API
+  description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+  version: 2.0.0
+  contact:
+    name: OpenZipkin
+    url: https://zipkin.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:9411
+  description: Default Zipkin server
+tags:
+- name: Traces
+  description: Search and retrieve distributed traces
+paths:
+  /api/v2/traces:
+    get:
+      operationId: getTraces
+      summary: Zipkin Search for Traces
+      description: Searches for traces matching the given query parameters. Results are sorted by descending end timestamp.
+      tags:
+      - Traces
+      parameters:
+      - name: serviceName
+        in: query
+        description: Service name to query for
+        schema:
+          type: string
+      - name: spanName
+        in: query
+        description: Span name to query for
+        schema:
+          type: string
+      - name: annotationQuery
+        in: query
+        description: Annotation query string, e.g. "http.method=GET" or "error"
+        schema:
+          type: string
+      - name: minDuration
+        in: query
+        description: Minimum duration in microseconds
+        schema:
+          type: integer
+          format: int64
+      - name: maxDuration
+        in: query
+        description: Maximum duration in microseconds
+        schema:
+          type: integer
+          format: int64
+      - name: endTs
+        in: query
+        description: Upper bound on the timestamp of the first span in a trace, in epoch milliseconds. Defaults to current time.
+        schema:
+          type: integer
+          format: int64
+      - name: lookback
+        in: query
+        description: How far back to look from endTs, in milliseconds. Defaults to endTs, limited to a system-configured max.
+        schema:
+          type: integer
+          format: int64
+      - name: limit
+        in: query
+        description: Maximum number of traces to return. Defaults to 10.
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: A list of traces, each trace is a list of spans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Span'
+        '400':
+          description: Bad request
+  /api/v2/trace/{traceId}:
+    get:
+      operationId: getTrace
+      summary: Zipkin Get a Trace by ID
+      description: Returns a trace by its 16 or 32 character hex trace ID.
+      tags:
+      - Traces
+      parameters:
+      - name: traceId
+        in: path
+        required: true
+        description: Trace ID, 16 or 32 character hex string
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{16,32}$
+      responses:
+        '200':
+          description: A trace as a list of spans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Span'
+        '404':
+          description: Trace not found
+components:
+  schemas:
+    Span:
+      type: object
+      required:
+      - traceId
+      - id
+      properties:
+        traceId:
+          type: string
+          description: Unique 128-bit or 64-bit trace identifier, hex encoded
+          pattern: ^[0-9a-f]{16,32}$
+        parentId:
+          type: string
+          description: The parent span ID, hex encoded, absent if root span
+          pattern: ^[0-9a-f]{16}$
+        id:
+          type: string
+          description: Unique 64-bit span identifier, hex encoded
+          pattern: ^[0-9a-f]{16}$
+        kind:
+          type: string
+          description: The type of span
+          enum:
+          - CLIENT
+          - SERVER
+          - PRODUCER
+          - CONSUMER
+        name:
+          type: string
+          description: The logical operation this span represents
+        timestamp:
+          type: integer
+          format: int64
+          description: Epoch microseconds of the start of this span
+        duration:
+          type: integer
+          format: int64
+          description: Duration in microseconds of the critical path
+        localEndpoint:
+          $ref: '#/components/schemas/Endpoint'
+        remoteEndpoint:
+          $ref: '#/components/schemas/Endpoint'
+        annotations:
+          type: array
+          description: Events that explain latency with a timestamp
+          items:
+            $ref: '#/components/schemas/Annotation'
+        tags:
+          type: object
+          description: Key-value pairs providing additional context
+          additionalProperties:
+            type: string
+        debug:
+          type: boolean
+          description: True if this span was sampled with debug flag
+        shared:
+          type: boolean
+          description: True if this span ID is shared between client and server
+    Endpoint:
+      type: object
+      description: The network context of a node in the service graph
+      properties:
+        serviceName:
+          type: string
+          description: Lower-case label of this node in the service graph
+        ipv4:
+          type: string
+          description: IPv4 address
+          format: ipv4
+        ipv6:
+          type: string
+          description: IPv6 address
+          format: ipv6
+        port:
+          type: integer
+          description: Port number
+          minimum: 0
+          maximum: 65535
+    Annotation:
+      type: object
+      required:
+      - timestamp
+      - value
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Epoch microseconds of this event
+        value:
+          type: string
+          description: Event value, usually a short description

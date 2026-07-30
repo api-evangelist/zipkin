@@ -6,7 +6,19 @@ description: >-
   CNCF-related project maintained by the OpenZipkin community. Zipkin provides a collector, storage, and query service
   with a UI for visualizing trace data across distributed services.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zipkin.png
 tags:
   - Distributed Tracing
   - Observability
@@ -17,49 +29,228 @@ created: '2026-03-25'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: zipkin:zipkin-api-v2
-    name: Zipkin API V2
-    description: >-
-      Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans,
-      querying traces, looking up services and span names, and retrieving dependency links between services.
-    humanURL: https://zipkin.io/zipkin-api/
-    tags:
-      - Dependencies
-      - Distributed Tracing
-      - Observability
-      - Spans
-      - Traces
-    properties:
-      - type: Documentation
-        url: https://zipkin.io/zipkin-api/
-      - type: GitHubRepository
-        url: https://github.com/openzipkin/zipkin
-      - type: OpenAPI
-        url: openapi/zipkin-api-v2.yml
-      - type: JSONSchema
-        url: json-schema/zipkin-api-v2-span-schema.json
-      - type: JSONSchema
-        url: json-schema/zipkin-api-v2-endpoint-schema.json
-      - type: JSONSchema
-        url: json-schema/zipkin-api-v2-annotation-schema.json
-      - type: JSONSchema
-        url: json-schema/zipkin-api-v2-dependency-link-schema.json
-      - type: JSONStructure
-        url: json-structure/zipkin-api-v2-span-structure.json
-      - type: JSONStructure
-        url: json-structure/zipkin-api-v2-endpoint-structure.json
-      - type: JSONStructure
-        url: json-structure/zipkin-api-v2-annotation-structure.json
-      - type: JSONStructure
-        url: json-structure/zipkin-api-v2-dependency-link-structure.json
-      - type: Examples
-        url: examples/zipkin-api-v2-get-services-example.json
-      - type: Examples
-        url: examples/zipkin-api-v2-get-dependencies-example.json
-      - type: Examples
-        url: examples/zipkin-api-v2-report-spans-example.json
-      - type: Examples
-        url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-autocomplete-api
+  name: Zipkin Autocomplete API
+  description: Autocomplete tag key and value lookups
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Autocomplete
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-autocomplete-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-dependencies-api
+  name: Zipkin Dependencies API
+  description: Query service dependency links
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Dependencies
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-dependencies-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-health-api
+  name: Zipkin Health API
+  description: Server health check
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-health-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-services-api
+  name: Zipkin Services API
+  description: Query registered service names
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-services-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-spans-api
+  name: Zipkin Spans API
+  description: Submit and query span names
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Spans
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-spans-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
+- aid: zipkin:zipkin-traces-api
+  name: Zipkin Traces API
+  description: Search and retrieve distributed traces
+  humanURL: https://zipkin.io/zipkin-api/
+  tags:
+  - Traces
+  properties:
+  - type: OpenAPI
+    url: openapi/zipkin-traces-api-openapi.yml
+  - type: Documentation
+    url: https://zipkin.io/zipkin-api/
+  - type: GitHubRepository
+    url: https://github.com/openzipkin/zipkin
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-span-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-endpoint-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/zipkin-api-v2-dependency-link-schema.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-span-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-endpoint-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-annotation-structure.json
+  - type: JSONStructure
+    url: json-structure/zipkin-api-v2-dependency-link-structure.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-services-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-get-dependencies-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-report-spans-example.json
+  - type: Examples
+    url: examples/zipkin-api-v2-search-traces-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/zipkin-agentic-access.yml

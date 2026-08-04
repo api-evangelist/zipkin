@@ -1,0 +1,24 @@
+{
+  "provider": "zipkin",
+  "sources": [
+    "zipkin-autocomplete-api-openapi.yml",
+    "zipkin-dependencies-api-openapi.yml",
+    "zipkin-health-api-openapi.yml",
+    "zipkin-services-api-openapi.yml",
+    "zipkin-spans-api-openapi.yml",
+    "zipkin-traces-api-openapi.yml"
+  ],
+  "outputs": [
+    "zipkin-autocomplete-api-openapi.yml",
+    "zipkin-dependencies-api-openapi.yml",
+    "zipkin-health-api-openapi.yml",
+    "zipkin-services-api-openapi.yml",
+    "zipkin-spans-api-openapi.yml",
+    "zipkin-traces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

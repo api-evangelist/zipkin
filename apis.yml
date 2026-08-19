@@ -27,7 +27,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml
 created: '2026-03-25'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: zipkin:zipkin-autocomplete-api
   name: Zipkin Autocomplete API

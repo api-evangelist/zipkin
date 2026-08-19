@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2 Autocomplete Spans API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Span Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/spans",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "The service name to lookup span names for"
+              }
+            ]
+          },
+          "docs": "Returns a list of span names for a given service."
+        },
+        {
+          "info": {
+            "name": "Zipkin Report Spans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:9411/api/v2/spans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a list of spans encoded per content type. Accepted content types are application/json and application/x-protobuf."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

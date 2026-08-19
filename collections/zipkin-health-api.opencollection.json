@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2 Autocomplete Health API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/health"
+          },
+          "docs": "Returns OK if the server is healthy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

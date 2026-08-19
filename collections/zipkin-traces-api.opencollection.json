@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2 Autocomplete Traces API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Search for Traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/traces",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "Service name to query for"
+              },
+              {
+                "name": "spanName",
+                "value": "",
+                "type": "query",
+                "description": "Span name to query for"
+              },
+              {
+                "name": "annotationQuery",
+                "value": "",
+                "type": "query",
+                "description": "Annotation query string, e.g. \"http.method=GET\" or \"error\""
+              },
+              {
+                "name": "minDuration",
+                "value": "",
+                "type": "query",
+                "description": "Minimum duration in microseconds"
+              },
+              {
+                "name": "maxDuration",
+                "value": "",
+                "type": "query",
+                "description": "Maximum duration in microseconds"
+              },
+              {
+                "name": "endTs",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound on the timestamp of the first span in a trace, in epoch milliseconds. Defaults to current time."
+              },
+              {
+                "name": "lookback",
+                "value": "",
+                "type": "query",
+                "description": "How far back to look from endTs, in milliseconds. Defaults to endTs, limited to a system-configured max."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of traces to return. Defaults to 10."
+              }
+            ]
+          },
+          "docs": "Searches for traces matching the given query parameters. Results are sorted by descending end timestamp."
+        },
+        {
+          "info": {
+            "name": "Zipkin Get a Trace by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/trace/:traceId",
+            "params": [
+              {
+                "name": "traceId",
+                "value": "",
+                "type": "path",
+                "description": "Trace ID, 16 or 32 character hex string"
+              }
+            ]
+          },
+          "docs": "Returns a trace by its 16 or 32 character hex trace ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2 Autocomplete API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autocomplete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Autocomplete Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/autocompleteKeys"
+          },
+          "docs": "Returns a list of tag keys configured for autocomplete."
+        },
+        {
+          "info": {
+            "name": "Zipkin Get Autocomplete Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/autocompleteValues",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The tag key to lookup values for"
+              }
+            ]
+          },
+          "docs": "Returns a list of values for a given autocomplete tag key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

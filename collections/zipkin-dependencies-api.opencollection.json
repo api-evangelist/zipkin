@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zipkin API v2 Autocomplete Dependencies API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dependencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zipkin Get Dependency Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9411/api/v2/dependencies",
+            "params": [
+              {
+                "name": "endTs",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound timestamp for dependency links, in epoch milliseconds."
+              },
+              {
+                "name": "lookback",
+                "value": "",
+                "type": "query",
+                "description": "How far back from endTs to look, in milliseconds."
+              }
+            ]
+          },
+          "docs": "Returns dependency links derived from spans. Dependencies show which services call which other services, along with call counts and error counts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

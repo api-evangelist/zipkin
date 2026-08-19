@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "bba42cca-6925-4d9e-bd55-a559c6f53f79",
+      "name": "Spans",
+      "description": {
+        "content": "Submit and query span names",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62465a7c-e3b1-42c0-b907-66a6958c6fd1",
+          "name": "Zipkin Get Span Names",
+          "request": {
+            "name": "Zipkin Get Span Names",
+            "description": {
+              "content": "Returns a list of span names for a given service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "spans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serviceName",
+                  "value": "<string>",
+                  "description": "(Required) The service name to lookup span names for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e56dc8d-f3ee-46d9-81c1-204086fb63de",
+              "name": "A list of span names",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be11a910-435f-489b-ac9e-da844de18519",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e596b28-1dd4-48b9-9b9f-da46e74b00ed",
+          "name": "Zipkin Report Spans",
+          "request": {
+            "name": "Zipkin Report Spans",
+            "description": {
+              "content": "Uploads a list of spans encoded per content type. Accepted content types are application/json and application/x-protobuf.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "spans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"traceId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"kind\": \"<string>\",\n    \"name\": \"<string>\",\n    \"timestamp\": \"<long>\",\n    \"duration\": \"<long>\",\n    \"localEndpoint\": {\n      \"serviceName\": \"<string>\",\n      \"ipv4\": \"<ipv4>\",\n      \"ipv6\": \"<ipv6>\",\n      \"port\": \"<integer>\"\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"<string>\",\n      \"ipv4\": \"<ipv4>\",\n      \"ipv6\": \"<ipv6>\",\n      \"port\": \"<integer>\"\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": \"<long>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"timestamp\": \"<long>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"<string>\"\n    },\n    \"debug\": \"<boolean>\",\n    \"shared\": \"<boolean>\"\n  },\n  {\n    \"traceId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"kind\": \"<string>\",\n    \"name\": \"<string>\",\n    \"timestamp\": \"<long>\",\n    \"duration\": \"<long>\",\n    \"localEndpoint\": {\n      \"serviceName\": \"<string>\",\n      \"ipv4\": \"<ipv4>\",\n      \"ipv6\": \"<ipv6>\",\n      \"port\": \"<integer>\"\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"<string>\",\n      \"ipv4\": \"<ipv4>\",\n      \"ipv6\": \"<ipv6>\",\n      \"port\": \"<integer>\"\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": \"<long>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"timestamp\": \"<long>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"<string>\"\n    },\n    \"debug\": \"<boolean>\",\n    \"shared\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a23c788b-2274-4466-8343-d6e1974e4cf6",
+              "name": "Spans accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"traceId\": \"eaa498b0cbc13425ab86f724b6e1e05\",\n    \"id\": \"243ebd8dbd634857\",\n    \"parentId\": \"2bf19e5e91d687d1\",\n    \"kind\": \"CONSUMER\",\n    \"name\": \"string\",\n    \"timestamp\": 2618,\n    \"duration\": 9070,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"178.126.187.83\",\n      \"ipv6\": \"47f1:77d9:4323:49b5:1efe:b8c0:7b5d:06cd\",\n      \"port\": 64564\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"140.43.55.147\",\n      \"ipv6\": \"0c38:e529:3918:a96f:69c1:ab04:76bd:e986\",\n      \"port\": 63847\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 6335,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 1700,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"debug\": true,\n    \"shared\": true\n  },\n  {\n    \"traceId\": \"5fb66d6890d69cb89\",\n    \"id\": \"61bf359b797b9c26\",\n    \"parentId\": \"c316aacace910c50\",\n    \"kind\": \"CONSUMER\",\n    \"name\": \"string\",\n    \"timestamp\": 1114,\n    \"duration\": 7538,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"255.148.2.166\",\n      \"ipv6\": \"b591:75d3:594d:fe81:6947:cafa:4bac:4069\",\n      \"port\": 60987\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"134.201.139.251\",\n      \"ipv6\": \"32d4:650d:517f:a70f:86c7:7017:fab4:d044\",\n      \"port\": 3486\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 3438,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 1925,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"debug\": false,\n    \"shared\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76ec223a-be98-40e7-a1a7-d60ff3d5c0b5",
+              "name": "Bad request - spans were malformed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"traceId\": \"eaa498b0cbc13425ab86f724b6e1e05\",\n    \"id\": \"243ebd8dbd634857\",\n    \"parentId\": \"2bf19e5e91d687d1\",\n    \"kind\": \"CONSUMER\",\n    \"name\": \"string\",\n    \"timestamp\": 2618,\n    \"duration\": 9070,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"178.126.187.83\",\n      \"ipv6\": \"47f1:77d9:4323:49b5:1efe:b8c0:7b5d:06cd\",\n      \"port\": 64564\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"140.43.55.147\",\n      \"ipv6\": \"0c38:e529:3918:a96f:69c1:ab04:76bd:e986\",\n      \"port\": 63847\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 6335,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 1700,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"debug\": true,\n    \"shared\": true\n  },\n  {\n    \"traceId\": \"5fb66d6890d69cb89\",\n    \"id\": \"61bf359b797b9c26\",\n    \"parentId\": \"c316aacace910c50\",\n    \"kind\": \"CONSUMER\",\n    \"name\": \"string\",\n    \"timestamp\": 1114,\n    \"duration\": 7538,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"255.148.2.166\",\n      \"ipv6\": \"b591:75d3:594d:fe81:6947:cafa:4bac:4069\",\n      \"port\": 60987\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"134.201.139.251\",\n      \"ipv6\": \"32d4:650d:517f:a70f:86c7:7017:fab4:d044\",\n      \"port\": 3486\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 3438,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 1925,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"debug\": false,\n    \"shared\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:9411",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7cc04930-ee2a-4715-a356-9319f8e02ba1",
+    "name": "Zipkin API v2 Autocomplete Spans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.\n\nContact Support:\n Name: OpenZipkin",
+      "type": "text/plain"
+    }
+  }
+}

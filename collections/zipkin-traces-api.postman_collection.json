@@ -1,0 +1,384 @@
+{
+  "item": [
+    {
+      "id": "53dd4981-39f6-484b-ae48-bf1ad7118377",
+      "name": "Traces",
+      "description": {
+        "content": "Search and retrieve distributed traces",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "016715e9-8040-4bad-9c86-a73c03036856",
+          "name": "Zipkin Search for Traces",
+          "request": {
+            "name": "Zipkin Search for Traces",
+            "description": {
+              "content": "Searches for traces matching the given query parameters. Results are sorted by descending end timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "traces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serviceName",
+                  "value": "<string>",
+                  "description": "Service name to query for"
+                },
+                {
+                  "disabled": false,
+                  "key": "spanName",
+                  "value": "<string>",
+                  "description": "Span name to query for"
+                },
+                {
+                  "disabled": false,
+                  "key": "annotationQuery",
+                  "value": "<string>",
+                  "description": "Annotation query string, e.g. \"http.method=GET\" or \"error\""
+                },
+                {
+                  "disabled": false,
+                  "key": "minDuration",
+                  "value": "<long>",
+                  "description": "Minimum duration in microseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxDuration",
+                  "value": "<long>",
+                  "description": "Maximum duration in microseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTs",
+                  "value": "<long>",
+                  "description": "Upper bound on the timestamp of the first span in a trace, in epoch milliseconds. Defaults to current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "lookback",
+                  "value": "<long>",
+                  "description": "How far back to look from endTs, in milliseconds. Defaults to endTs, limited to a system-configured max."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of traces to return. Defaults to 10."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4650345-1603-4900-9499-29ffc91c2c42",
+              "name": "A list of traces, each trace is a list of spans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spanName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "annotationQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minDuration",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "maxDuration",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTs",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "lookback",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    {\n      \"traceId\": \"807f34c865dcfbbb1931e\",\n      \"id\": \"3cf9f912f59bb643\",\n      \"parentId\": \"0578b7b4a460e8d8\",\n      \"kind\": \"CONSUMER\",\n      \"name\": \"string\",\n      \"timestamp\": 236,\n      \"duration\": 5145,\n      \"localEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"158.121.152.30\",\n        \"ipv6\": \"a6eb:f85d:ded9:8d3e:826f:04b1:156f:8a8a\",\n        \"port\": 63396\n      },\n      \"remoteEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"4.105.4.166\",\n        \"ipv6\": \"302a:4f69:269d:4abf:7d88:5d70:0e9a:1f5d\",\n        \"port\": 45347\n      },\n      \"annotations\": [\n        {\n          \"timestamp\": 1523,\n          \"value\": \"string\"\n        },\n        {\n          \"timestamp\": 2560,\n          \"value\": \"string\"\n        }\n      ],\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"debug\": false,\n      \"shared\": false\n    },\n    {\n      \"traceId\": \"536293117a8c640c8f63e\",\n      \"id\": \"11b01a59bd314b4a\",\n      \"parentId\": \"170aed955ffbd143\",\n      \"kind\": \"SERVER\",\n      \"name\": \"string\",\n      \"timestamp\": 1451,\n      \"duration\": 7662,\n      \"localEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"148.7.127.26\",\n        \"ipv6\": \"4ab3:ee55:fd4c:9295:d126:6f3c:cd7c:8090\",\n        \"port\": 17157\n      },\n      \"remoteEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"241.90.92.234\",\n        \"ipv6\": \"2525:00b5:13c5:4f18:3864:3629:194d:20bd\",\n        \"port\": 3679\n      },\n      \"annotations\": [\n        {\n          \"timestamp\": 5041,\n          \"value\": \"string\"\n        },\n        {\n          \"timestamp\": 1272,\n          \"value\": \"string\"\n        }\n      ],\n      \"tags\": {\n        \"key_0\": \"string\"\n      },\n      \"debug\": true,\n      \"shared\": true\n    }\n  ],\n  [\n    {\n      \"traceId\": \"07251f0911e03a32eeefa5dff\",\n      \"id\": \"d2e4934612fb6365\",\n      \"parentId\": \"5370b3c52a7e345b\",\n      \"kind\": \"PRODUCER\",\n      \"name\": \"string\",\n      \"timestamp\": 4848,\n      \"duration\": 9348,\n      \"localEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"84.141.68.42\",\n        \"ipv6\": \"e1b0:ba3d:0c01:a805:1dcc:104c:9488:0aed\",\n        \"port\": 60908\n      },\n      \"remoteEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"108.67.43.174\",\n        \"ipv6\": \"2557:533e:d24e:31bc:941f:9c99:7c7b:e5f5\",\n        \"port\": 23889\n      },\n      \"annotations\": [\n        {\n          \"timestamp\": 3583,\n          \"value\": \"string\"\n        },\n        {\n          \"timestamp\": 8035,\n          \"value\": \"string\"\n        }\n      ],\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"debug\": false,\n      \"shared\": true\n    },\n    {\n      \"traceId\": \"db7e9bd5d43736378ede8\",\n      \"id\": \"a813356abce11e1c\",\n      \"parentId\": \"ac266ac7ebd9adbe\",\n      \"kind\": \"SERVER\",\n      \"name\": \"string\",\n      \"timestamp\": 7553,\n      \"duration\": 2474,\n      \"localEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"165.237.31.235\",\n        \"ipv6\": \"e722:06c1:7d70:0622:10b2:f4d5:4010:f530\",\n        \"port\": 18049\n      },\n      \"remoteEndpoint\": {\n        \"serviceName\": \"string\",\n        \"ipv4\": \"65.150.156.4\",\n        \"ipv6\": \"d42d:0e3d:2a80:1b2b:9b86:6ad6:5ed7:6b7a\",\n        \"port\": 11375\n      },\n      \"annotations\": [\n        {\n          \"timestamp\": 5244,\n          \"value\": \"string\"\n        },\n        {\n          \"timestamp\": 4321,\n          \"value\": \"string\"\n        }\n      ],\n      \"tags\": {\n        \"key_0\": \"string\"\n      },\n      \"debug\": true,\n      \"shared\": false\n    }\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22cfcff4-1ab8-4cf0-bc9b-875a74426181",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spanName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "annotationQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minDuration",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "maxDuration",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTs",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "lookback",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be56c457-490c-4f8f-a44f-1478eb317d57",
+          "name": "Zipkin Get a Trace by ID",
+          "request": {
+            "name": "Zipkin Get a Trace by ID",
+            "description": {
+              "content": "Returns a trace by its 16 or 32 character hex trace ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "trace",
+                ":traceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "traceId",
+                  "description": "(Required) Trace ID, 16 or 32 character hex string"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e75d3ebe-cb17-4b46-8da2-e1fb34e9cab8",
+              "name": "A trace as a list of spans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "trace",
+                    ":traceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "traceId",
+                      "description": "(Required) Trace ID, 16 or 32 character hex string"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"traceId\": \"20a0e0047a762c8d724230\",\n    \"id\": \"b300680390bbf454\",\n    \"parentId\": \"457d30e55f47b07b\",\n    \"kind\": \"SERVER\",\n    \"name\": \"string\",\n    \"timestamp\": 6317,\n    \"duration\": 8792,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"236.149.74.16\",\n      \"ipv6\": \"83c6:2b27:3900:d732:bc64:6832:febf:66e9\",\n      \"port\": 15179\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"186.117.76.53\",\n      \"ipv6\": \"c6bd:5d77:5f3a:515e:64ad:9eb4:22a1:6ba4\",\n      \"port\": 14284\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 9607,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 6909,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\"\n    },\n    \"debug\": false,\n    \"shared\": false\n  },\n  {\n    \"traceId\": \"15c7383d794ef6eb37b96a8e46525\",\n    \"id\": \"b5f6d91264171bce\",\n    \"parentId\": \"dcc98d7ea2976025\",\n    \"kind\": \"PRODUCER\",\n    \"name\": \"string\",\n    \"timestamp\": 652,\n    \"duration\": 1788,\n    \"localEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"207.152.239.176\",\n      \"ipv6\": \"e2d6:66a8:826d:2487:4459:19eb:11f7:ff64\",\n      \"port\": 64279\n    },\n    \"remoteEndpoint\": {\n      \"serviceName\": \"string\",\n      \"ipv4\": \"67.165.141.126\",\n      \"ipv6\": \"1852:2ab0:8da8:c89a:2344:8d49:b245:b14d\",\n      \"port\": 28379\n    },\n    \"annotations\": [\n      {\n        \"timestamp\": 3947,\n        \"value\": \"string\"\n      },\n      {\n        \"timestamp\": 2849,\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"debug\": false,\n    \"shared\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65f650eb-4f0d-4062-b355-bb2d335c417a",
+              "name": "Trace not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "trace",
+                    ":traceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "traceId",
+                      "description": "(Required) Trace ID, 16 or 32 character hex string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:9411",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "add3d91d-20db-4823-85da-7af69df2aee3",
+    "name": "Zipkin API v2 Autocomplete Traces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.\n\nContact Support:\n Name: OpenZipkin",
+      "type": "text/plain"
+    }
+  }
+}

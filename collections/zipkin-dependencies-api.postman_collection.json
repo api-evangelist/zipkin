@@ -1,0 +1,128 @@
+{
+  "item": [
+    {
+      "id": "73098356-5f53-4bb7-b862-e50578d024f9",
+      "name": "Dependencies",
+      "description": {
+        "content": "Query service dependency links",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed6c2812-b8d2-4e75-b525-751c27bfcb55",
+          "name": "Zipkin Get Dependency Links",
+          "request": {
+            "name": "Zipkin Get Dependency Links",
+            "description": {
+              "content": "Returns dependency links derived from spans. Dependencies show which services call which other services, along with call counts and error counts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "dependencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "endTs",
+                  "value": "<long>",
+                  "description": "(Required) Upper bound timestamp for dependency links, in epoch milliseconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "lookback",
+                  "value": "<long>",
+                  "description": "How far back from endTs to look, in milliseconds."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30cf4db6-c18a-4532-8e57-4a906e6ef6c5",
+              "name": "A list of dependency links",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "dependencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endTs",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "lookback",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"parent\": \"string\",\n    \"child\": \"string\",\n    \"callCount\": 5178,\n    \"errorCount\": 107\n  },\n  {\n    \"parent\": \"string\",\n    \"child\": \"string\",\n    \"callCount\": 2461,\n    \"errorCount\": 4877\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:9411",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "03ed5cf2-8633-464c-a75e-b4f7f093ccb6",
+    "name": "Zipkin API v2 Autocomplete Dependencies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.\n\nContact Support:\n Name: OpenZipkin",
+      "type": "text/plain"
+    }
+  }
+}

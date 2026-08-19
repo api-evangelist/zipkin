@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "bc3823ff-4801-4b4d-9e01-714ff4dd9937",
+      "name": "Health",
+      "description": {
+        "content": "Server health check",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "680e35af-84d0-4392-ac44-87a502db3bec",
+          "name": "Zipkin Health Check",
+          "request": {
+            "name": "Zipkin Health Check",
+            "description": {
+              "content": "Returns OK if the server is healthy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7738bc51-e4c5-44ef-aae7-72a24835398c",
+              "name": "Server is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:9411",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "262f4dea-872b-4642-93de-b36f55d092b0",
+    "name": "Zipkin API v2 Autocomplete Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.\n\nContact Support:\n Name: OpenZipkin",
+      "type": "text/plain"
+    }
+  }
+}

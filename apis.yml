@@ -6,6 +6,19 @@ description: >-
   CNCF-related project maintained by the OpenZipkin community. Zipkin provides a collector, storage, and query service
   with a UI for visualizing trace data across distributed services.
 type: Index
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
@@ -257,6 +270,14 @@ apis:
   - type: Examples
     url: examples/zipkin-api-v2-search-traces-example.json
 common:
+  - type: IssueTracker
+    url: https://github.com/openzipkin/zipkin/issues
+  - type: Releases
+    url: https://github.com/openzipkin/zipkin/releases
+  - type: SecurityPolicy
+    url: https://github.com/openzipkin/zipkin/blob/master/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/openzipkin/zipkin/blob/master/.github/CONTRIBUTING.md
   - type: License
     name: Apache-2.0
     url: https://github.com/openzipkin/zipkin/blob/master/LICENSE

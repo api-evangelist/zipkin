@@ -1,12 +1,7 @@
 {
   "provider": "zipkin",
   "sources": [
-    "zipkin-autocomplete-api-openapi.yml",
-    "zipkin-dependencies-api-openapi.yml",
-    "zipkin-health-api-openapi.yml",
-    "zipkin-services-api-openapi.yml",
-    "zipkin-spans-api-openapi.yml",
-    "zipkin-traces-api-openapi.yml"
+    "_original/zipkin-api-v2.yml"
   ],
   "outputs": [
     "zipkin-autocomplete-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zipkin-api-v2.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zipkin-autocomplete-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zipkin-dependencies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zipkin-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zipkin-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zipkin-spans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zipkin-traces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

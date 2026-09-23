@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Zipkin API v2 Autocomplete Health API
+  title: Zipkin API v2 Health API
   description: Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
   version: 2.0.0
   contact:

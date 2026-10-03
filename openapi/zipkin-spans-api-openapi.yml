@@ -62,19 +62,26 @@ paths:
           description: Bad request - spans were malformed
 components:
   schemas:
-    Annotation:
+    Endpoint:
       type: object
-      required:
-      - timestamp
-      - value
+      description: The network context of a node in the service graph
       properties:
-        timestamp:
-          type: integer
-          format: int64
-          description: Epoch microseconds of this event
-        value:
+        serviceName:
           type: string
-          description: Event value, usually a short description
+          description: Lower-case label of this node in the service graph
+        ipv4:
+          type: string
+          description: IPv4 address
+          format: ipv4
+        ipv6:
+          type: string
+          description: IPv6 address
+          format: ipv6
+        port:
+          type: integer
+          description: Port number
+          minimum: 0
+          maximum: 65535
     Span:
       type: object
       required:
@@ -132,23 +139,16 @@ components:
         shared:
           type: boolean
           description: True if this span ID is shared between client and server
-    Endpoint:
+    Annotation:
       type: object
-      description: The network context of a node in the service graph
+      required:
+      - timestamp
+      - value
       properties:
-        serviceName:
-          type: string
-          description: Lower-case label of this node in the service graph
-        ipv4:
-          type: string
-          description: IPv4 address
-          format: ipv4
-        ipv6:
-          type: string
-          description: IPv6 address
-          format: ipv6
-        port:
+        timestamp:
           type: integer
-          description: Port number
-          minimum: 0
-          maximum: 65535
+          format: int64
+          description: Epoch microseconds of this event
+        value:
+          type: string
+          description: Event value, usually a short description

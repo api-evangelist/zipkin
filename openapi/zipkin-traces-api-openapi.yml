@@ -110,6 +110,19 @@ paths:
           description: Trace not found
 components:
   schemas:
+    Annotation:
+      type: object
+      required:
+      - timestamp
+      - value
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Epoch microseconds of this event
+        value:
+          type: string
+          description: Event value, usually a short description
     Endpoint:
       type: object
       description: The network context of a node in the service graph
@@ -187,16 +200,3 @@ components:
         shared:
           type: boolean
           description: True if this span ID is shared between client and server
-    Annotation:
-      type: object
-      required:
-      - timestamp
-      - value
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-          description: Epoch microseconds of this event
-        value:
-          type: string
-          description: Event value, usually a short description

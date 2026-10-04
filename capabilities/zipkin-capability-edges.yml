@@ -1,0 +1,54 @@
+slug: zipkin
+provider: Zipkin
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Spans
+  spec_file: zipkin-spans-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.9
+  evidence: '"Zipkin Report Spans" / "Zipkin Get Span Names"; description: "Zipkin''s v2 HTTP API for
+    querying and collecting distributed traces"'
+  reason: Span submission and lookup in a distributed tracing system is production observability instrumentation
+    (logs, metrics, traces), not a business-domain capability.
+- tag: Traces
+  spec_file: zipkin-traces-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.9
+  evidence: '"Zipkin Search for Traces", "Zipkin Get a Trace by ID" — "distributed tracing system for
+    gathering timing data to troubleshoot latency problems"'
+  reason: Trace querying for latency troubleshooting is squarely observability management of a running
+    service.
+- tag: Dependencies
+  spec_file: zipkin-dependencies-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.8
+  evidence: GET /api/v2/dependencies  getDependencies  Zipkin Get Dependency Links; schema DependencyLink
+  reason: Derives service-to-service dependency links from collected traces — trace-based understanding
+    of the running service, i.e. Observability Management for a software platform.
+- tag: Services
+  spec_file: zipkin-services-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.7
+  evidence: GET /api/v2/services  getServices  Zipkin Get Service Names
+  reason: Lists service names observed in collected trace data, part of the distributed-tracing query
+    surface described as 'querying and collecting distributed traces' — Observability Management. Single
+    read operation, so moderate confidence.

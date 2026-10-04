@@ -271,6 +271,9 @@ apis:
   - type: Examples
     url: examples/zipkin-api-v2-search-traces-example.json
 common:
+  - type: CapabilityMap
+    url: capabilities/zipkin-capability-edges.yml
+    name: Zipkin Business Capability Map
   - type: IssueTracker
     url: https://github.com/openzipkin/zipkin/issues
   - type: Releases

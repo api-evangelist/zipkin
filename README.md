@@ -1,4 +1,4 @@
-# Zipkin (zipkin)
+# Zipkin
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,77 +66,170 @@
 
 Zipkin is an open source distributed tracing system for gathering timing data to troubleshoot latency problems in microservice architectures. It was originally developed at Twitter based on the Google Dapper paper, and is now a CNCF-related project maintained by the OpenZipkin community. Zipkin provides a collector, storage, and query service with a UI for visualizing trace data across distributed services.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/zipkin/refs/heads/main/apis.yml)
+**Areas:** Distributed Tracing · Observability · Open Source · Microservices
 
-## Scope
+## Zipkin on APIs.io
 
-- **Type:** Index
+Everything profiled for Zipkin is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zipkin/](https://apis.io/providers/zipkin/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Distributed Tracing
-- Observability
-- Open Source
-- Microservices
+- [Zipkin Autocomplete API](https://apis.io/apis/zipkin/zipkin-autocomplete-api/) — Autocomplete tag key and value lookups
+- [Zipkin Dependencies API](https://apis.io/apis/zipkin/zipkin-dependencies-api/) — Query service dependency links
+- [Zipkin Health API](https://apis.io/apis/zipkin/zipkin-health-api/) — Server health check
+- [Zipkin Services API](https://apis.io/apis/zipkin/zipkin-services-api/) — Query registered service names
+- [Zipkin Spans API](https://apis.io/apis/zipkin/zipkin-spans-api/) — Submit and query span names
+- [Zipkin Traces API](https://apis.io/apis/zipkin/zipkin-traces-api/) — Search and retrieve distributed traces
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-25
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Zipkin API V2
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Zipkin's v2 HTTP API for querying and collecting distributed traces. Provides endpoints for submitting spans, querying traces, looking up services and span names, and retrieving dependency links between services.
+- [Zipkin Agentic Access](https://apis.io/agentic-access/zipkin/zipkin-agentic-access/)
 
-- **Human URL:** [https://zipkin.io/zipkin-api/](https://zipkin.io/zipkin-api/)
+#### JSON Schema (4)
 
-#### Tags
+The data models the API reads and writes.
 
-- Dependencies
-- Distributed Tracing
-- Observability
-- Spans
-- Traces
+- [Annotation](https://apis.io/schemas/zipkin/zipkin-api-v2-annotation/)
+- [DependencyLink](https://apis.io/schemas/zipkin/zipkin-api-v2-dependency-link/)
+- [Endpoint](https://apis.io/schemas/zipkin/zipkin-api-v2-endpoint/)
+- [Span](https://apis.io/schemas/zipkin/zipkin-api-v2-span/)
 
-#### Properties
+#### JSON Structure (4)
 
-- [Documentation](https://zipkin.io/zipkin-api/)
-- [GitHub Repository](https://github.com/openzipkin/zipkin)
-- [OpenAPI](openapi/zipkin-api-v2.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zipkin-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zipkin-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/zipkin-api-v2-span-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/zipkin-api-v2-endpoint-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/zipkin-api-v2-annotation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/zipkin-api-v2-dependency-link-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/zipkin-api-v2-span-structure.json)
-- [JSON Structure](json-structure/zipkin-api-v2-endpoint-structure.json)
-- [JSON Structure](json-structure/zipkin-api-v2-annotation-structure.json)
-- [JSON Structure](json-structure/zipkin-api-v2-dependency-link-structure.json)
-- [Example](examples/zipkin-api-v2-get-services-example.json)
-- [Example](examples/zipkin-api-v2-get-dependencies-example.json)
-- [Example](examples/zipkin-api-v2-report-spans-example.json)
-- [Example](examples/zipkin-api-v2-search-traces-example.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Zipkin Api V2 Annotation Structure](https://apis.io/json-structure/zipkin/zipkin-api-v2-annotation-structure/)
+- [Zipkin Api V2 Dependency Link Structure](https://apis.io/json-structure/zipkin/zipkin-api-v2-dependency-link-structure/)
+- [Zipkin Api V2 Endpoint Structure](https://apis.io/json-structure/zipkin/zipkin-api-v2-endpoint-structure/)
+- [Zipkin Api V2 Span Structure](https://apis.io/json-structure/zipkin/zipkin-api-v2-span-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Zipkin Context](https://apis.io/jsonld/zipkin/zipkin-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Zipkin Vocabulary](https://apis.io/vocabularies/zipkin/zipkin-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Zipkin Api V2 Get Dependencies Example](https://apis.io/examples/zipkin/zipkin-api-v2-get-dependencies-example/)
+- [Zipkin Api V2 Get Services Example](https://apis.io/examples/zipkin/zipkin-api-v2-get-services-example/)
+- [Zipkin Api V2 Report Spans Example](https://apis.io/examples/zipkin/zipkin-api-v2-report-spans-example/)
+- [Zipkin Api V2 Search Traces Example](https://apis.io/examples/zipkin/zipkin-api-v2-search-traces-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Zipkin API v2](https://apis.io/collections/zipkin/open-zipkin-api-v2/)
+- [Zipkin API v2 Autocomplete API](https://apis.io/collections/zipkin/open-zipkin-autocomplete-api/)
+- [Zipkin API v2 Autocomplete Dependencies API](https://apis.io/collections/zipkin/open-zipkin-dependencies-api/)
+- [Zipkin API v2 Autocomplete Health API](https://apis.io/collections/zipkin/open-zipkin-health-api/)
+- [Zipkin API v2 Autocomplete Services API](https://apis.io/collections/zipkin/open-zipkin-services-api/)
+- [Zipkin API v2 Autocomplete Spans API](https://apis.io/collections/zipkin/open-zipkin-spans-api/)
+- [Zipkin API v2 Autocomplete Traces API](https://apis.io/collections/zipkin/open-zipkin-traces-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Zipkin — jsonschema rules](https://apis.io/rules/zipkin/zipkin-jsonschema-spectral-rules/)
+- [Zipkin — spectral rules](https://apis.io/rules/zipkin/zipkin-spectral/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Zipkin Domain Security](https://apis.io/security/zipkin/zipkin-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Zipkin Plans Pricing](https://apis.io/plans/zipkin/zipkin-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Zipkin Rate Limits](https://apis.io/rate-limits/zipkin/zipkin-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Zipkin Finops](https://apis.io/finops/zipkin/zipkin-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://zipkin.io)
 - [Documentation](https://zipkin.io/pages/quickstart.html)
-- [GitHub Organization](https://github.com/openzipkin)
-- [SDK](https://github.com/openzipkin/brave)
-- [SDK](https://github.com/openzipkin/zipkin-go)
-- [SDK](https://github.com/openzipkin/zipkin-js)
-- [SDK](https://github.com/openzipkin/zipkin-ruby)
-- [JSON-LD](json-ld/zipkin-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/zipkin-spectral.yaml)
-- [Vocabulary](vocabulary/zipkin-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [GitHub](https://github.com/openzipkin)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 55.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zipkin/](https://apis.io/providers/zipkin/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zipkin: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zipkin/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
